@@ -4,8 +4,8 @@ This playbook will deploy a Nomad and Consul cluster
 
 ## Software Deployed
 
-[HashiCorp Nomad](https://www.nomadproject.io/) 1.0.0-beta3
-[HashiCorp Consul](https://www.consul.io/) 1.9.0
+* [HashiCorp Nomad](https://www.nomadproject.io/) 1.0.0-beta3
+* [HashiCorp Consul](https://www.consul.io/) 1.9.0
 
 ## Hosts
 
