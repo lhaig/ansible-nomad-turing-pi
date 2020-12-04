@@ -1,0 +1,23 @@
+[turingpi_servers]
+nmd-svr1.box  ansible_host=192.168.1.100
+nmd-svr2.box  ansible_host=192.168.1.101
+nmd-svr3.box  ansible_host=192.168.1.102
+
+[turingpi_clients]
+nmd-clnt1.box  ansible_host=192.168.1.104
+nmd-clnt2.box  ansible_host=192.168.1.105
+nmd-clnt3.box  ansible_host=192.168.1.106
+nmd-clnt4.box  ansible_host=192.168.1.107
+
+[turingpi_deploy_host]
+nmd-svr1.box  ansible_host=192.168.1.100
+
+[turingpi_servers:vars]
+ansible_ssh_user=ubuntu
+
+[turingpi_clients:vars]
+ansible_ssh_user=ubuntu
+
+[hashistack_tpi:children]
+turingpi_servers
+turingpi_clients

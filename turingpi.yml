@@ -1,0 +1,37 @@
+---
+- hosts: turingpi_servers
+  vars:
+    nomad_ver: 1.0.0-beta3
+    consul_ver: 1.9.0
+    arch: arm64 # arm64, amd64
+    retry_join: "{{ groups['turingpi_servers'] | map('extract', hostvars, ['ansible_host']) | list | to_json }}"
+    bootstrap_expect: 3
+    region: tpi-region
+    datacenter: tpi-dc1
+    nomad_gossip_key: "ADD_YOUR_GOSSIP_KEY_HERE"
+    consul_gossip_key: "ADD_YOUR_GOSSIP_KEY_HERE"
+  roles:
+    - base-server
+    - consul-server
+    - nomad-server
+
+# # License Nomad and Consul
+# - hosts: turingpi_deploy_host
+#   roles:
+#     - consul-license
+#     - nomad-license
+
+- hosts: turingpi_clients
+  vars:
+    nomad_ver: 1.0.0-beta3
+    consul_ver: 1.9.0
+    arch: arm64 # arm64, amd64
+    retry_join: "{{ groups['turingpi_servers'] | map('extract', hostvars, ['ansible_host']) | list | to_json }}"
+    nomad_gossip_key: "ADD_YOUR_GOSSIP_KEY_HERE"
+    consul_gossip_key: "ADD_YOUR_GOSSIP_KEY_HERE"
+    region: tpi-region
+    datacenter: tpi-dc1
+  roles:
+    - base-client
+    - consul-client
+    - nomad-client
